@@ -1,7 +1,6 @@
-#FROM ruby:2.4.1-alpine3.6
-FROM ruby:2.6.5-alpine3.10
+FROM ruby:2.7.1-alpine3.12
 
-LABEL maintainer="Robert Gauld <robert@robertgauld.co.uk>"
+LABEL maintainer="Robert Gauld <robert@robertgauld.uk>"
 
 # Create and switch to user called app
 RUN adduser -D app
@@ -9,11 +8,11 @@ WORKDIR /home/app
 
 # Copy over app and install dependencies
 COPY app/Gemfile app/Gemfile.lock /home/app/
-RUN cd /home/app && bundle install --without development test
+RUN cd /home/app && bundle update --bundler && bundle install
 
 # Copy rest of app
 COPY app /home/app
 RUN chown -R app:app /home/app && chmod -R u+w /home/app
 
 
-CMD ["bundle","exec","run"]
+CMD bundle exec run

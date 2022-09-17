@@ -2,6 +2,6 @@
 
 docker run  \
   --env-file docker.env \
-  --volume /home/robert/docker/mirror-heroku-postgres-backups/data:/media/destination:rw \
+  --volume /home/robert/Docker/mirror-heroku-postgres-backups/data:/media/destination:rw \
   --rm \
   robertgauld/mirror-heroku-postgres-backups
